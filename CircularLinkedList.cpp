@@ -41,7 +41,7 @@ void search(NODE *start, int item)
 {
 	NODE *p = start;
 	int pos = 1;
-	while (p -> link != NULL)
+	while (p -> link != start)
 	{
 		if (p -> info == item)
 		{
