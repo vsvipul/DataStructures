@@ -1,9 +1,3 @@
-/* This is the implementation of circular linked list using linear linked list, this has been implemented
-    using head element, this could have also been solved using tail element with easier implementation*/
-
-/* Look at the code and if any problem is seen contact us*/
-
-
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -86,9 +80,8 @@ NODE *addatend(NODE *start, int data)
 	p = start;
 	while (p -> link != start)
 		p = p -> link;
-    tmp -> link = p -> link;
+    	tmp -> link = p -> link;
 	p -> link = tmp;
-
 	return start;
 }
 
@@ -109,10 +102,10 @@ NODE *addafter(NODE *start, int data, int item)
 		p = p -> link;
 	}
 	if (p -> info == item)
-		{
-			start = addatend(start,data);               //this is case when element is found at last number
-			return start;
-		}
+	{
+		start = addatend(start,data);               //this is case when element is found at last number
+		return start;
+	}
 
 	printf("%d not found in the list!\n",item);
 	return start;
@@ -159,7 +152,6 @@ NODE *create_list(NODE *start)
 		return start;
 	printf("Enter the element to be inserted!\n");
 	scanf("%d",&data);
-
 	start = addtoempty(start,data);
 	for (i=2 ; i<=n ; i++)
 	{
@@ -199,7 +191,6 @@ NODE *del(NODE *start, int data)
 		p = p -> link;
 	}
 	printf("Element %d not found!\n", data);
-
 	return start;
 }
 
@@ -249,10 +240,10 @@ int main()
 				printf("Enter the element to be searched!!\n");
 				scanf("%d",&data);
 				search(start,data);break;
-            case 4:
-                printf("Enter the element to be inserted in the empty linked list:\n");
-                scanf("%d",&data);
-                start=addtoempty(start,data);break;
+            		case 4:
+                		printf("Enter the element to be inserted in the empty linked list:\n");
+                		scanf("%d",&data);
+                		start=addtoempty(start,data);break;
 			case 5:
 				printf("Enter the element to be inserted!\n");
 				scanf("%d",&data);
