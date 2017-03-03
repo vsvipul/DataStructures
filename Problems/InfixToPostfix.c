@@ -100,7 +100,6 @@ int main()
                     a[j] = temp;
                     top = pop(s,top);
                     j++;
-                    i++;
                 }
                 top = push(s,top,e[i]);
                 i++;
@@ -108,6 +107,6 @@ int main()
         }
         for(k=0;k<j;k++)
             printf("%c",a[k]);
-        printf("\n\n");
+        printf("\n");
     }
 }
