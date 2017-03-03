@@ -3,8 +3,8 @@ Contains codes for the course Data Structures IDST232C
 
 
 
-# For submitting PRs-
+# For sending PRs-
 
-In root directory, please name all the C files in Title case without any spaces or dashes.
+In any directory, see how other files have been named and and send pull request accordingly... 
 
-Inside any directory, please use lower case for all the files.
+PRs with unindented codes and with improper filenames wont be accepted.
