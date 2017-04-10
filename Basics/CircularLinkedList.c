@@ -165,6 +165,7 @@ NODE *create_list(NODE *start)
 NODE *del(NODE *start, int data)
 {
 	NODE *tmp,*p;
+	p = start;
 	tmp = (NODE *)malloc(sizeof(NODE));
 	if (start == NULL)
 	{
@@ -173,17 +174,30 @@ NODE *del(NODE *start, int data)
 	}
 	if (start -> info == data)
 	{
-		tmp = start;
-		start = start -> link;
-		free(tmp);
+		while (p -> link != start)
+		{
+			if (p -> link -> info == data)
+			{
+				tmp = p -> link;
+				printf("tmp: %d",tmp->info);
+				p -> link = tmp -> link;
+				free(tmp);
+				return start;
+			}
+			p = p -> link;
+		}
+		tmp = p -> link;
+		p -> link = tmp -> link;
+		start = tmp -> link;
 		return start;
 	}
-	p = start;
+	
 	while (p -> link != start)
 	{
 		if (p -> link -> info == data)
 		{
 			tmp = p -> link;
+			printf("tmp: %d",tmp->info);
 			p -> link = tmp -> link;
 			free(tmp);
 			return start;
