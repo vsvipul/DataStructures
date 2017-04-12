@@ -18,24 +18,20 @@ int pop(char stack[],int top)
 
 int isempty(int top)
 {
-	if(top==-1)
-		return 1;
-
-	else
-		return 0;
+	return (top==-1);
 }
 
 int main()
 {
-    while(1)
+    int t;
+    scanf("%d",&t);
+    while(t--)
     {
-        char s[50],stack[100];
+        char s[1000001],stack[1000001];
         int top=-1,n,i,l=0,flag=1,j;
-        printf("Enter the expression\n");
         scanf("%s",s);
+        l=sizeof(s)/sizeof(s[0]);
         for(i=0;s[i]!='\0';i++)
-            l++;
-        for(i=0;i<l;i++)
         {
             if(s[i]=='(')
             {
@@ -45,7 +41,7 @@ int main()
             {
                 if(isempty(top))
                 {
-                    printf("Not balanced\n");
+                    printf("NO\n");
                     flag=0;
                     break;
                 }
@@ -58,11 +54,10 @@ int main()
         if(flag!=0)
         {
             if(isempty(top))
-                printf("It is balanced\n");
+                printf("YES\n");
             else
-                printf("not balanced\n");
+                printf("NO\n");
         }
     }
-
     return 0;
 }
