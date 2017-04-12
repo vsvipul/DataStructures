@@ -1,3 +1,22 @@
+/*
+Description 
+
+The quiz starts. The quiz is of 100 marks. The passing marks are 40. There are n questions. Even though the questions are of different marks depending upon the difficulty, you can attempt exactly k questions due to time constraints. Find the total number of ways to attempt k questions such that you at least get the passing marks, assuming that an attempted question gives you full marks.
+
+Input Format 
+
+The first line contains t, the number of test cases. For every test case the next line is n and k, the total number of questions and the number of questions that you can attempt. Then n lines follow giving the total marks for a particular question.
+
+Output Format 
+
+For every test case, the number of ways you can attempt the question paper.
+
+Constraints 
+
+1 ≤ t ≤ 10
+1 ≤ k ≤ n ≤ 15
+*/
+
 #include <stdio.h>
 
 void solve(int arr[], int n, int k, int count, int sum, int i, int *ans)
