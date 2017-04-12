@@ -28,9 +28,8 @@ int main()
     while(t--)
     {
         char s[1000001],stack[1000001];
-        int top=-1,n,i,l=0,flag=1,j;
+        int top=-1,n,i,flag=1,j;
         scanf("%s",s);
-        l=sizeof(s)/sizeof(s[0]);
         for(i=0;s[i]!='\0';i++)
         {
             if(s[i]=='(')
