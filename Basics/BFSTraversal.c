@@ -94,6 +94,13 @@ void bftraversal(int adj[MAX][MAX], int n, int state[], int queue[], int front, 
 	printf("Enter starting vertex for bfs: ");
 	scanf("%d",&v);
 	bfs(v,adj,n,state,queue,front,rear);
+	/* // Add code to print all vertices (unreachable from starting vertex)
+	for (v=0;v<n;v++)
+	{
+		if (state[v]==initial)
+			bfs(v,adj,n,state,queue,front,rear);
+	}
+	*/
 }
 
 int main()
