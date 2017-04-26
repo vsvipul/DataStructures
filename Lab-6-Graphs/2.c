@@ -1,89 +1,124 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-struct node
+struct edge
 {
-	int dest;
-	struct node* next;
+    struct vertex* destvertex;
+    struct edge* nextedge;
 };
 
-struct list
+struct vertex
 {
-	struct node* head;
+    int info;
+    struct vertex* nextvertex;
+    struct edge* firstedge;
 };
 
-struct graph
+struct vertex* insertvertex(struct vertex* start, int u)
 {
-	int v;
-	struct list* arr;
-};
-
-struct node* newNode(int dest)
-{
-	struct node* newnode=(struct node*)malloc(sizeof(struct node));
-	newnode->dest=dest;
-	newnode->next=NULL;
-	return newnode;
+    struct vertex *tmp,*p;
+    tmp=malloc(sizeof(struct vertex));
+    tmp->info=u;
+    tmp->nextvertex=NULL;
+    tmp->firstedge=NULL;
+    if (start==NULL)
+    {
+        start=tmp;
+        return start;
+    }
+    p=start;
+    while (p->nextvertex!=NULL)
+        p=p->nextvertex;
+    p->nextvertex=tmp;
+    return start;
 }
 
-struct graph* creategraph(int v)
+struct vertex* findvertex(struct vertex* start, int u)
 {
-	struct graph* g= (struct graph*)malloc(sizeof(struct graph));
-	g->v=v;
-	g->arr= (struct list*)malloc(v*sizeof(struct list));
-	int i;
-	for (i=0;i<v;i++)
-	{
-		g->arr[i].head=NULL;
-	}
-	return g;
+    struct vertex *p, *loc;
+    p=start;
+    while (p!=NULL)
+    {
+        if (p->info==u)
+        {
+            loc=p;
+            return loc;
+        }
+        p=p->nextvertex;
+    }
+    loc=NULL;
+    return loc;
 }
 
-void addedge(struct graph* g, int src, int dest)
+struct vertex* insertedge(struct vertex* start, int u, int v)
 {
-	struct node* newnode=newNode(dest);
-	newnode->next=g->arr[src].head;
-	g->arr[src].head=newnode;
-	// since undirected
-	newnode=newNode(src);
-	newnode->next=g->arr[dest].head;
-	g->arr[dest].head=newnode;
+    struct vertex *locu,*locv;
+    struct edge *tmp,*p;
+    locu=findvertex(start, u);
+    locv=findvertex(start, v);
+    if (locu==NULL || locv==NULL)
+    {
+        return start;
+    }
+    tmp=malloc(sizeof(struct edge));
+    tmp->destvertex=locv;
+    tmp->nextedge=NULL;
+    if (locu->firstedge==NULL) //first edge in that vertex
+    {
+        locu->firstedge=tmp;
+        return start;
+    }
+    p=locu->firstedge;
+    while (p->nextedge!=NULL)
+        p=p->nextedge;
+    p->nextedge=tmp;
+    return start;
 }
 
-void printgraph(struct graph* g)
+void display(struct vertex* start)
 {
-	int v;
-	for (v=0;v<g->v;v++)
-	{
-		struct node* crawl=g->arr[v].head;
-		printf("\n Adjacenct list of vertex %d\n head ", v);
-		while (crawl)
-		{
-			printf("-> %d",crawl->dest);
-			crawl=crawl->next;
-		}
-		printf("\n");
-	}
+    struct vertex *p;
+    struct edge *q;
+    p=start;
+    while (p!=NULL)
+    {
+        printf("%d ",p->info);
+        q=p->firstedge;
+        while (q!=NULL)
+        {
+            printf(" %d",q->destvertex->info);
+            q=q->nextedge;
+        }
+        printf("\n");
+        p=p->nextvertex;
+    }
 }
 
 int main()
 {
-	int i,v;
-	scanf("%d",&v);
-	struct graph* g= creategraph(v);
-	for (i=0;i<v;i++)
-	{
-		if (i-2>=0)
-			addedge(g,i-2,i);
-		if (i+1<v)
-			addedge(g,i,i+1);
-		if (i+2<v)
-			addedge(g,i,i+2);
-		if (i+5<v)
-			addedge(g,i,i+5);
-		if (i+10<v)
-			addedge(g,i,i+10);
-	}
-	printgraph(g);
-	return 0;
+    struct vertex* start=NULL;
+    int n,i,tmp;
+    scanf("%d",&n);
+    int arr[n+1];
+    for (i=0;i<=n;i++)
+    {
+        scanf("%d",&tmp);
+        arr[i]=tmp;
+        start=insertvertex(start,tmp);
+    }
+    for (i=0;i<=n;i++)
+    {
+        if (i-2>=0)
+            start=insertedge(start,arr[i],arr[i-2]);
+        if (i+1<=n)
+            start=insertedge(start,arr[i],arr[i+1]);
+        if (i+2<=n)
+            start=insertedge(start,arr[i],arr[i+2]);
+        if (i+5<=n)
+            start=insertedge(start,arr[i],arr[i+5]);
+        if (i+10<=n)
+            start=insertedge(start,arr[i],arr[i+10]);
+    }
+    display(start);
+    return 0;
 }
