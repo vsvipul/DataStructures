@@ -26,7 +26,7 @@ int main()
 			arr[i][i+1]=1;
 		if (i+2<=n)
 			arr[i][i+2]=1;
-		if (i+5>=n)
+		if (i+5<=n)
 			arr[i][i+5]=1;
 		if (i+10<=n)
 			arr[i][i+10]=1;
