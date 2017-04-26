@@ -122,10 +122,10 @@ int main()
 		if (v<-1 || v>n-1)
 		{
 			printf("Destination vertex does not exist\n");
+			continue;
 		}
 		if (v==-1)
 			break;
-		count=0;
 		if (distance[v]==infinity)
 		{
 			printf("No path from start vertex to destination vertex\n");
@@ -133,6 +133,7 @@ int main()
 		}
 		else
 			printf("Shortest distance is %d\n",distance[v]);
+		count=0;
 		while (v!=NIL)
 		{
 			count++;
