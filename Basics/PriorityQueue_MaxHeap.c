@@ -21,13 +21,6 @@ void maxheapify(int arr[], int i, int n)
 	}
 }
 
-void buildmaxheap(int arr[], int n)
-{
-	int i;
-	for (i=n/2;i>=1;i--)
-		maxheapify(arr,i,n);
-}
-
 void display(int arr[], int n)
 {
 	int i;
