@@ -92,17 +92,17 @@ void inorder(struct node* ptr)
 {
 	if (ptr==NULL)
 		return;
-	preorder(ptr->lchild);
+	inorder(ptr->lchild);
 	printf("%d ",ptr->info);
-	preorder(ptr->rchild);
+	inorder(ptr->rchild);
 }
 
 void postorder(struct node* ptr)
 {
 	if (ptr==NULL)
 		return;
-	preorder(ptr->lchild);
-	preorder(ptr->rchild);
+	postorder(ptr->lchild);
+	postorder(ptr->rchild);
 	printf("%d ",ptr->info);
 }
 
