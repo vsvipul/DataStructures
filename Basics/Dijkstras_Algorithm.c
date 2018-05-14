@@ -97,7 +97,7 @@ void dijkstra(int s)
 				if (pathlength[current]+adj[current][i] < pathlength[i])
 				{
 					pre[i]=current;
-					pathlength[i]=pathlength[i]+adj[current][i];
+					pathlength[i]=pathlength[current]+adj[current][i];
 				}
 			}
 		}
