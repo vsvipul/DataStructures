@@ -24,7 +24,7 @@ void create_graph()
 		scanf("%d %d",&origin,&dest);
 		if (origin==-1 && dest==-1)
 			break;
-		printf("Enter weight for this age is: ");
+		printf("Enter weight for this edge : ");
 		scanf("%d",&wt);
 		if (origin>=n || dest>=n || origin<0 || dest<0)
 		{
